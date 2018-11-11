@@ -1,0 +1,8 @@
+---
+- name: "configure apache vhost"
+  template:
+    src: templates/vhost.conf
+    dest: /etc/httpd/conf.d/wordpress.conf
+- service:
+    name: httpd
+    state: restarted

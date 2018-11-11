@@ -1,0 +1,14 @@
+---
+- hosts: wordpress_nodes
+  become: yes
+  vars:
+    wp_install_directory: /var/www/wordpress
+    database_name: "SuperBlogXD"
+    database_username: "user_SuperBlogXD"    #max 16 znaków
+    database_password: "12qwaszx"
+  tasks:
+    - include_tasks: tasks/os_dependencies.yml
+    - include_tasks: tasks/manage-db.yml
+    - include_tasks: tasks/manage-httpd.yml
+    - include_tasks: tasks/manage-wp-install.yml
+

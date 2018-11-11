@@ -1,0 +1,19 @@
+---
+- name: "Download wordpress"
+  get_url:
+    url: https://wordpress.org/latest.zip
+    dest: ~/latest.zip
+
+- file:
+    path: "{{ wp_install_directory }}"
+    state: directory
+
+- unarchive:
+    src:  https://wordpress.org/latest.zip
+    dest: "{{ wp_install_directory }}"
+    remote_src: yes
+    
+- name: "Put wordpress configuration into place"
+  template:
+    src: templates/wp-config.php
+    dest: "{{ wp_install_directory }}/wp-config.php"
